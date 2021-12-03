@@ -1,1 +1,17 @@
 # this runs the action on github
+
+name: feature-poll-workflow
+on:
+  pull_request:
+  types: [opened, reopened]
+  
+  issues:
+    types: [opened]
+jobs:
+  create-polls:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '14'
