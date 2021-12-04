@@ -13,4 +13,4 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
     - name: Get most issue stats then generate card 
-      uses: arndom/issue-stats-card
+      uses: arndom/issue-stats-card@v0.1
