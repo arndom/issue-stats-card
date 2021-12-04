@@ -48,8 +48,8 @@ async function fetchIssueStats() {
   }
 
   console.log("all closed issues:",res.data.data.repository.all_time_closedIssues.totalCount)
-  console.log("all open issues:",res.data.data.all_time_openIssues.totalCount)
-  console.log("response rate base array ",res.data.data.response_rate.nodes)
+  console.log("all open issues:",res.data.data.repository.all_time_openIssues.totalCount)
+  console.log("response rate base array ",res.data.data.repository.response_rate.nodes)
 
 }
 
