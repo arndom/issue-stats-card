@@ -47,7 +47,10 @@ async function fetchIssueStats() {
     // throw Error(res.data.errors[0].message || "Could not fetch user");
   }
 
-  console.log(res.data.data)
+  console.log("all closed issues:",res.data.data.repository.all_time_closedIssues.totalCount)
+  console.log("all open issues:",res.data.data.all_time_openIssues.totalCount)
+  console.log("response rate base array ",res.data.data.response_rate.nodes)
+
 }
 
 module.exports = fetchIssueStats;
