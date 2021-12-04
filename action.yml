@@ -1,1 +1,20 @@
-# this is for the defining the inputs, outputs and other properties of the action
+name: 'Issue Stats Card'
+author: 'arndom & Omzlaw'
+description: 'Generates a stat card for github issues in a repo'
+
+inputs:
+  gh_token:
+    description: 'user token'
+    required: true
+    default: ${{ github.token }}
+outputs:
+  result:
+    description: 'the result of all this'
+
+runs:
+  using: 'node12'
+  main: 'index.js'
+
+branding:
+  icon: 'activity'
+  color: 'blue'
