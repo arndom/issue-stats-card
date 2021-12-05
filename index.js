@@ -14,7 +14,7 @@ const octokit = new Octokit({ auth: core.getInput('gh_token') });
             console.log("Hello", username,  ", the workflow is being deployed in the", repo, "repo")
 
             const getIssueStats = await fetchIssuesStat();
-            console.log(getIssueStats) 
+            // console.log(getIssueStats) 
 
         }catch(error){
             core.setFailed(error.message);
