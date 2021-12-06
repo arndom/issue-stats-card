@@ -46,12 +46,24 @@ async function fetchIssueStats() {
     console.error(res.data.errors);
   }
 
-  console.log("all closed issues:",res.data.data.repository.all_time_closedIssues.totalCount)
-  console.log("all open issues:",res.data.data.repository.all_time_openIssues.totalCount)
+  let closedIssues = res.data.data.repository.all_time_closedIssues.totalCount
+  let openIssues = res.data.data.repository.all_time_openIssues.totalCount
+  let totalIssues = closedIssues + openIssues
 
-  let base =  res.data.data.repository.response_rate.nodes
-  console.log("array of when issue were created:",base.map((issue) => issue.createdAt))
-  console.log("array of when issue was first responded to:",base.map((issue) => issue.comments.nodes[0] !== undefined ? issue.comments.nodes[0].createdAt : "no comment reply"))
+  console.log("all closed issues:",closedIssues)
+  console.log("all open issues:",openIssues)
+  console.log("all issues:",totalIssues)
+
+  let baseIssues =  res.data.data.repository.response_rate.nodes
+  let issuesCreated = baseIssues.map((issue) => issue.createdAt)
+  let issuesResponse = baseIssues.map((issue) => issue.comments.nodes[0] !== undefined ? issue.comments.nodes[0].createdAt : "no comment reply")
+
+  console.log("array of when issue were created:", issuesCreated)
+  console.log("array of when issue was first responded to:", issuesResponse)
+
+
+  let test = new Date(issuesCreated[0])
+  console.log("test", test - test)
 
 }
 
