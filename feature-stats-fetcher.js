@@ -61,9 +61,9 @@ async function fetchIssueStats() {
   console.log("array of when issue were created:", issuesCreated)
   console.log("array of when issue was first responded to:", issuesResponse)
 
-  let _noCommentsIndex = issuesResponse.filter( (issue, index) => {
+  let _noCommentsIndex = issuesResponse.map( (issue, index) => {
     if(issue == 'no comment reply'){
-      return issuesResponse.indexOf(index)
+      return index
     }
   })
   console.log( _noCommentsIndex )
