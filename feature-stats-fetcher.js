@@ -76,6 +76,10 @@ async function fetchIssueStats() {
 
   console.log("number of valid issues:", noValidIssues)
   console.log("time difference in minutes:", timeDifference)
+
+  let averageResponseRate = timeDifference.reduce((prev, curr) => prev + curr) / noValidIssues
+
+  console.log("your average response rate in minutes is:", averageResponseRate)
 }
 
 module.exports = fetchIssueStats;
