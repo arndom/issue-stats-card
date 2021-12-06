@@ -64,13 +64,20 @@ async function fetchIssueStats() {
     }
   }).filter((issue) => issue !== undefined)
 
-  console.log("no. of no comments:", _noCommentsIndex.length )
+  console.log("the last 50 issues are being analysed......")
+  console.log("number of no comments:", _noCommentsIndex.length )
 
   issuesCreated = issuesCreated.filter((issue, index) => _noCommentsIndex.indexOf(index) === -1)
   issuesResponse = issuesResponse.filter((issue, index) => _noCommentsIndex.indexOf(index) === -1)
 
-  console.log("array of when issue were created:", issuesCreated.length)
-  console.log("array of when issue was first responded to:", issuesResponse.length)
+  // console.log("array of when issue were created:", issuesCreated)
+  // console.log("array of when issue was first responded to:", issuesResponse)
+
+  let noValidIssues =  issuesResponse.length
+  let timeDifference = issuesResponse.map((issue, index) => (new Date(issue) - new Date(issuesCreated[index])) / (1000 * 60)  )
+
+  console.log("length of valid issues:", noValidIssues)
+  console.log("time difference:", timeDifference)
 
   // let test = new Date(issuesCreated[1])
   // let test1 = new Date(issuesResponse[1])
