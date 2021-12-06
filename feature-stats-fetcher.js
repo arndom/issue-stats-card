@@ -66,7 +66,8 @@ async function fetchIssueStats() {
 
   console.log("")
   console.log("the last 50 issues are being analysed......")
-  console.log("number of no comments:", _noCommentsIndex.length )
+  console.log("all time issues:",totalIssues)
+  console.log("number of not replied issues", _noCommentsIndex.length )
 
   issuesCreated = issuesCreated.filter((issue, index) => _noCommentsIndex.indexOf(index) === -1)
   issuesResponse = issuesResponse.filter((issue, index) => _noCommentsIndex.indexOf(index) === -1)
@@ -74,12 +75,16 @@ async function fetchIssueStats() {
   let noValidIssues =  issuesResponse.length
   let timeDifference = issuesResponse.map((issue, index) => Math.round( (new Date(issue) - new Date(issuesCreated[index])) / (1000 * 60) )  )
 
-  console.log("number of valid issues:", noValidIssues)
+  console.log("number of replied issues:", noValidIssues)
   console.log("time difference in minutes:", timeDifference)
 
-  let averageResponseRate = timeDifference.reduce((prev, curr) => prev + curr) / noValidIssues
+  if(timeDifference.length < 2){
+    console.log("not enough data to analyse")
+  }else{
+    let averageResponseRate = timeDifference.reduce((prev, curr) => prev + curr) / noValidIssues
+    console.log("your average response rate in minutes is:", averageResponseRate)
+  }
+  }
 
-  console.log("your average response rate in minutes is:", averageResponseRate)
-}
 
 module.exports = fetchIssueStats;
