@@ -65,8 +65,10 @@ async function fetchIssueStats() {
     if(issue == 'no comment reply'){
       return index
     }
-  })
+  }).filter((issue) => issue !== undefined)
+
   console.log( _noCommentsIndex )
+  console.log( _noCommentsIndex.length )
 
   // let test = new Date(issuesCreated[1])
   // let test1 = new Date(issuesResponse[1])
