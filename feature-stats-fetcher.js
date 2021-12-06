@@ -58,8 +58,7 @@ async function fetchIssueStats() {
   let issuesCreated = baseIssues.map((issue) => issue.createdAt)
   let issuesResponse = baseIssues.map((issue) => issue.comments.nodes[0] !== undefined ? issue.comments.nodes[0].createdAt : "no comment reply")
 
-  console.log("array of when issue were created:", issuesCreated)
-  console.log("array of when issue was first responded to:", issuesResponse)
+
 
   let _noCommentsIndex = issuesResponse.map( (issue, index) => {
     if(issue == 'no comment reply'){
@@ -68,7 +67,11 @@ async function fetchIssueStats() {
   }).filter((issue) => issue !== undefined)
 
   console.log( _noCommentsIndex )
-  console.log( _noCommentsIndex.length )
+
+  issuesResponse = issuesResponse.filter((issue, index) => _noCommentsIndex.indexOf(index) === -1)
+
+  console.log("array of when issue were created:", issuesCreated)
+  console.log("array of when issue was first responded to:", issuesResponse)
 
   // let test = new Date(issuesCreated[1])
   // let test1 = new Date(issuesResponse[1])
