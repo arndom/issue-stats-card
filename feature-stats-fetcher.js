@@ -61,11 +61,18 @@ async function fetchIssueStats() {
   console.log("array of when issue were created:", issuesCreated)
   console.log("array of when issue was first responded to:", issuesResponse)
 
+  let _noCommentsIndex = issuesResponse.filter( (issue) => {
+    if(issue === "no comment reply"){
+      return issuesResponse.indexOf(issue)
+    }
+  })
 
-  let test = new Date(issuesCreated[1])
-  let test1 = new Date(issuesResponse[1])
+  console.log(_noCommentsIndex)
 
-  console.log("test", test1 - test)
+  // let test = new Date(issuesCreated[1])
+  // let test1 = new Date(issuesResponse[1])
+
+  // console.log("test", test1 - test)
 
 }
 
