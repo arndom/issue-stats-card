@@ -6,7 +6,7 @@ const fetchBaseStat = () => {
     {
       query: `
         {
-            repository(name: "${process.env.GITHUB_REPOSITORY.split("/")[1]}", owner: "${process.env.GITHUB_REPOSITORY.split("/")[0]}") {
+            repository(name: "github-readme-stats", owner: "anuraghazra") {
                 all_time_closedIssues: issues(states: CLOSED) {
                     totalCount
                 }
