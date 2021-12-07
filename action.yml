@@ -7,6 +7,10 @@ inputs:
     description: 'user token'
     required: true
     default: ${{ github.token }}
+  readme_path:
+    description: 'Comma separated paths of the readme files you want to update'
+    default: 'README.md'
+    required: false
 outputs:
   result:
     description: 'the result of all this'
