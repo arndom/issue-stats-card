@@ -37,7 +37,7 @@ const octokit = new Octokit({ auth: core.getInput('gh_token') });
               }
             )   
 
-            const sha = getReadme() 
+            const sha = getReadme.sha
 
             await octokit.request('PUT /repos/{owner}/{repo}/contents/{path}', {
               owner: username,
