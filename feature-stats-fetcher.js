@@ -1,7 +1,7 @@
 const { request } = require("./utils");
 const core = require('@actions/core')
 
-const fetchBaseStat = () => {
+const fetcher = () => {
   return request(
     {
       query: `
@@ -38,7 +38,7 @@ const fetchBaseStat = () => {
 
 async function fetchIssueStats() {
 
-  const res = await fetchBaseStat().then(res=>{
+  const res = await fetcher().then(res=>{
     return res
   })
 
@@ -52,7 +52,7 @@ async function fetchIssueStats() {
 
   console.log("all closed issues:",closedIssues)
   console.log("all open issues:",openIssues)
-  console.log("all issues:",totalIssues)
+  console.log("all time issues:",totalIssues)
 
   let baseIssues =  res.data.data.repository.response_rate.nodes
   let issuesCreated = baseIssues.map((issue) => issue.createdAt)
@@ -66,7 +66,6 @@ async function fetchIssueStats() {
 
   console.log("")
   console.log("the last 50 issues are being analysed......")
-  console.log("all time issues:",totalIssues)
   console.log("number of not replied issues", _noCommentsIndex.length )
 
   issuesCreated = issuesCreated.filter((issue, index) => _noCommentsIndex.indexOf(index) === -1)
@@ -76,13 +75,15 @@ async function fetchIssueStats() {
   let timeDifference = issuesResponse.map((issue, index) => Math.round( (new Date(issue) - new Date(issuesCreated[index])) / (1000 * 60) )  )
 
   console.log("number of replied issues:", noValidIssues)
-  console.log("time difference in minutes:", timeDifference)
+  // console.log("time difference in minutes:", timeDifference)
+
+  let averageResponseRate;
 
   if(timeDifference.length < 2){
-    console.log("not enough data to analyse")
+    console.log("not enough issues to analyse")
   }else{
-    let averageResponseRate = timeDifference.reduce((prev, curr) => prev + curr) / noValidIssues
-    console.log("your average response rate in minutes is:", averageResponseRate)
+    averageResponseRate = timeDifference.reduce((prev, curr) => prev + curr) / noValidIssues
+    console.log("your average response rate in minutes is:", averageResponseRate, "mins")
   }
   }
 
