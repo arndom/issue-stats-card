@@ -15,15 +15,7 @@ const octokit = new Octokit({ auth: core.getInput('gh_token') });
 
             const stats = await fetchIssuesStat();
 
-            const markdown =`| Issue Statistics | Values |
-            | - | :-: |
-            | Closed Issues 📪 | ${stats.closed} |
-            | Open Issues 📫 | ${stats.open} |
-            | Total Issues 🔢 | ${stats.total} |
-            | Replied Issues ☑ | ${stats.replied} |
-            | Not Replied Issues ➖ | ${stats.noReply} |
-            | Avg. Issue Response Time ⏱ | ${stats.rate !== undefined ? (stats.rate,"mins") : "NA" } |
-            `
+            const markdown =`| Issue Statistics | Values |\n| - | :-: |\n| Closed Issues 📪 | ${stats.closed} |\n| Open Issues 📫 | ${stats.open} |\n| Total Issues 🔢 | ${stats.total} |\n| Replied Issues ☑ | ${stats.replied} |\n| Not Replied Issues ➖ | ${stats.noReply} |\n| Avg. Issue Response Time ⏱ | ${stats.rate !== undefined ? (stats.rate,"mins") : "NA" } |`
             const getReadme = await octokit.request('GET /repos/{owner}/{repo}/contents/{path}', {
                 owner: username,
                 repo: repo,
