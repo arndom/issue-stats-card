@@ -75,7 +75,6 @@ async function fetchIssueStats() {
   let timeDifference = issuesResponse.map((issue, index) => Math.round( (new Date(issue) - new Date(issuesCreated[index])) / (1000 * 60) )  )
 
   console.log("number of replied issues:", noValidIssues)
-  // console.log("time difference in minutes:", timeDifference)
 
   let averageResponseRate;
 
@@ -85,7 +84,17 @@ async function fetchIssueStats() {
     averageResponseRate = timeDifference.reduce((prev, curr) => prev + curr) / noValidIssues
     console.log("your average response rate in minutes is:", averageResponseRate, "mins")
   }
+
+  let stats = {
+    closed: closedIssues,
+    open: openIssues,
+    total: totalIssues,
+    noReply:  _noCommentsIndex.length,
+    replied:  noValidIssues,
+    rate: averageResponseRate
   }
 
+  return stats
 
+}
 module.exports = fetchIssueStats;
