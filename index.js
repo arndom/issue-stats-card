@@ -22,7 +22,7 @@ const octokit = new Octokit({ auth: core.getInput('gh_token') });
                 repo: repo,
                 path: core.getInput('readme_path'),
               }).then( res => { 
-                console.log(res.data.content)
+                console.log(res.data)
                 console.log(typeof res.data.content)
                 return res.data
               }     
