@@ -22,8 +22,6 @@ const octokit = new Octokit({ auth: core.getInput('gh_token') });
                 repo: repo,
                 path: core.getInput('readme_path'),
               }).then( res => { 
-                console.log(res.data)
-                console.log(typeof res.data.content)
                 return res.data
               }     
               ).catch(e => {
@@ -34,12 +32,18 @@ const octokit = new Octokit({ auth: core.getInput('gh_token') });
 
             const sha = getReadme.sha
 
+            const contentb64 = getReadme.content      
+            let buff = Buffer.from(contentb64, 'base64')
+            let content = buff.toString('ascii')
+
+            content = content.replace("<-ISSUE-STAT-HERE->", markdown)
+            
             await octokit.request('PUT /repos/{owner}/{repo}/contents/{path}', {
               owner: username,
               repo: repo,
               path: core.getInput('readme_path'),
               message: '(Automated) Update README.md',
-              content: Buffer.from(markdown, "utf8").toString('base64'),
+              content: Buffer.from(content, "utf8").toString('base64'),
               sha: sha,
             }).then(() => {
               core.setOutput("result", (markdown))
