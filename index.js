@@ -45,7 +45,7 @@ const octokit = new Octokit({ auth: core.getInput('gh_token') });
             console.log(startIndex, endIndex)
 
             content = [
-              content.slice(0, startIndex+4),
+              content.slice(0, startIndex+28),
               '\n',
               markdown,
               '\n',
