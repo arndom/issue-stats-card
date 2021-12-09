@@ -50,7 +50,7 @@ const octokit = new Octokit({ auth: core.getInput('gh_token') });
               markdown,
               '\n',
               content.slice(endIndex),
-            ]
+            ].join('')
     
             console.log(content)
             
