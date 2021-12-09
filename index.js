@@ -37,7 +37,7 @@ const octokit = new Octokit({ auth: core.getInput('gh_token') });
             let content = buff.toString('ascii')
 
             // content = content.replace("<!-- <-ISSUE-STAT-HERE-> -->\n", `<!-- <-ISSUE-STAT-HERE-> -->\n\n${markdown}\n`)
-            content = content.replace("/<!-- <-ISSUE-STAT-HERE-> -->\n([\s\S]*)\n<!-- <-ISSUE-END-HERE-> -->/gm", `<!-- <-ISSUE-STAT-HERE-> -->\n\n${markdown}\n\n`)
+            content = content.replace("/<!-- <-ISSUE-STAT-HERE-> -->\n.*\n<!-- <-ISSUE-END-HERE-> -->/", `<!-- <-ISSUE-STAT-HERE-> -->\n\n${markdown}\n\n<!-- <-ISSUE-END-HERE-> -->`)
             
             await octokit.request('PUT /repos/{owner}/{repo}/contents/{path}', {
               owner: username,
