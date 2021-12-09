@@ -13,7 +13,7 @@
 
 ## How to use
 
-1. Star this repo 😉
+1. Star this repo p	
 2. Go to your special repository(repo with name the same as git username).
 3. Add the following section to your **README.md** file, you can give whatever title you want. Just make sure that you use `<!-- <-ISSUE-STAT-HERE-> --><!-- <-ISSUE-END-HERE-> -->` in your readme. The workflow will replace this comment with the actual blog post list:
 
@@ -57,4 +57,4 @@ jobs:
 
 ## Liked it?
 
-Hope you like this, Don't forget to give this a star ⭐
+Hope you like this, Don't forget to give this a star b-
