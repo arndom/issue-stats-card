@@ -43,7 +43,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
     - name: Get issue stats then generate card 
-      uses: arndom/issue-stats-card@v0.1
+      uses: arndom/issue-stats-card@v1
 ```
 
 6. Commit and wait for it to run automatically or you can also trigger it manually to see the result instantly.
